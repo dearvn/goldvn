@@ -1,4 +1,3 @@
-# A clone from https://github.com/JoshuaR503/Stock-Market-App and custome something
 
 ## Install 
 ```bash
@@ -10,3 +9,4 @@ flutter devices
 flutter run [id]
 ```
 
+#### A clone from https://github.com/JoshuaR503/Stock-Market-App and custome something
