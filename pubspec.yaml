@@ -12,7 +12,7 @@ dependencies:
   http: ^0.12.2
   dio: ^3.0.10
   intl: ^0.16.1
-  charts_flutter: ^0.12.0
+  #charts_flutter: ^0.12.0
   cupertino_icons: ^1.0.0
   path_provider: ^1.6.28
   sembast: ^2.4.10+4
@@ -21,18 +21,18 @@ dependencies:
   bloc: ^4.0.0
   rxdart: ^0.25.0
   equatable: ^1.2.6
-  introduction_screen: ^1.0.9
+  #introduction_screen: ^1.0.9
   flutter_spinkit: ^4.1.2+1
   font_awesome_flutter: ^8.12.0
   google_nav_bar: ^4.0.2
   url_launcher: ^5.7.10
   flutter_offline: ^1.0.0
   data_connection_checker: ^0.3.4
-  pusher_client: ^2.0.0
+  #pusher_client: ^2.0.0
   flutter_svg: ^0.19.3
   eva_icons_flutter: ^2.0.1
   ffi: ^1.0.0
-  flutter_secure_storage: ^3.3.5
+  #flutter_secure_storage: ^3.3.5
 
 dev_dependencies:
   flutter_launcher_icons: ^0.8.1
