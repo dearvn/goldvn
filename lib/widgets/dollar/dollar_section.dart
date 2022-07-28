@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:giavang/bloc/dollar/dollar_bloc.dart';
 import 'package:giavang/shared/colors.dart';
-//import 'package:giavang/widgets/dollar/search_box/seach_box.dart';
 import 'package:giavang/widgets/dollar/dollar.dart';
 import 'package:giavang/widgets/widgets/empty_screen.dart';
 import 'package:giavang/widgets/widgets/standard/header.dart';
@@ -45,13 +44,12 @@ class DollarSection extends StatelessWidget {
           children: [
 
             StandardHeader(
-              title: 'TỶ GIÁ',
+              title: 'TỶ GIÁ HIỆN TẠI',
               subtitle: '',
               action: Container(),
             ),
 
             //SizedBox(height: 16),
-            //SearchBoxWidget(),
             //SizedBox(height: 16),
             DollarSectionWidget()
           ]

@@ -7,7 +7,6 @@ import 'package:giavang/helpers/sentry_helper.dart';
 import 'package:giavang/models/alerts/alerts.dart';
 
 import 'package:giavang/respository/alerts/repository.dart';
-import 'package:giavang/respository/alerts/storage_client.dart';
 
 part 'alerts_event.dart';
 part 'alerts_state.dart';
@@ -15,7 +14,6 @@ part 'alerts_state.dart';
 class AlertsBloc extends Bloc<AlertsEvent, AlertsState> {
 
   final  _alertsRepository = AlertsRepository();
-  final  _databaseRepository = AlertStorageClient();
 
   @override
   AlertsState get initialState => AlertsInitial();

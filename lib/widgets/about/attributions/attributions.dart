@@ -28,9 +28,9 @@ class Attributions extends StatelessWidget {
     return BaseList(
       children: <Widget>[
         _buildContent(
-          title: 'Application Developed by Joshua García',
-          text: 'You can find this app\'s source code by tapping here.',
-          url: 'https://github.com/JoshuaR503/Stock-Market-App'
+          title: 'Ứng dụng này phát triển cho thị trường Việt Nam',
+          text: 'Theo dõi giá vàng, giá đô và dựa vào tín hiệu để tránh bị thua',
+          url: 'https://socbase.me'
         ),
         Divider(),
 

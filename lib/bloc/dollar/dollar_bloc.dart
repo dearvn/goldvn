@@ -7,7 +7,6 @@ import 'package:giavang/helpers/sentry_helper.dart';
 import 'package:giavang/models/dollar/dollar.dart';
 
 import 'package:giavang/respository/dollar/repository.dart';
-import 'package:giavang/respository/dollar/storage_client.dart';
 
 part 'dollar_event.dart';
 part 'dollar_state.dart';
@@ -15,7 +14,6 @@ part 'dollar_state.dart';
 class DollarBloc extends Bloc<DollarEvent, DollarState> {
 
   final  _dollarRepository = DollarRepository();
-  final  _databaseRepository = DollarStorageClient();
 
   @override
   DollarState get initialState => DollarInitial();
@@ -33,12 +31,12 @@ class DollarBloc extends Bloc<DollarEvent, DollarState> {
     try {
 
       final datas =  await Future
-        .wait(['SPY']
+        .wait(['USD']
         .map((symbol) async => await _dollarRepository.fetchDollar(symbol)));
 
         yield DollarLoaded(datas: datas);
     } catch (e, stack) {
-      yield DollarError(message: 'Có 1 lỗi trong quá trình khởi tạo.');
+      yield DollarError(message: 'Có lỗi trong quá trình khởi tạo.');
       await SentryHelper(exception: e, stackTrace: stack).report();
     }
   }

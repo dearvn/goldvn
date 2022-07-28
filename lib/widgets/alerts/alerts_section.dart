@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:giavang/bloc/alerts/alerts_bloc.dart';
 import 'package:giavang/shared/colors.dart';
-import 'package:giavang/widgets/alerts/search_box/seach_box.dart';
 import 'package:giavang/widgets/alerts/alerts.dart';
 import 'package:giavang/widgets/widgets/empty_screen.dart';
 import 'package:giavang/widgets/widgets/standard/header.dart';
@@ -32,7 +31,7 @@ class AlertsSection extends StatelessWidget {
         left: 24,
         right: 24
       ),
-      child: EmptyScreen(message: 'Looks like you don\'t have an internet connection.'),
+      child: EmptyScreen(message: 'Vui lòng kết nối internet.'),
     );
   }
 
@@ -45,13 +44,12 @@ class AlertsSection extends StatelessWidget {
           children: [
 
             StandardHeader(
-              title: 'Alerts',
+              title: 'TÍN HIỆU',
               subtitle: '',
               action: Container(),
             ),
 
             //SizedBox(height: 16),
-            SearchBoxWidget(),
             //SizedBox(height: 16),
             AlertsSectionWidget()
           ]

@@ -5,7 +5,7 @@
 class SingleGoldModel {
   final num buyingPrice;
   final num sellingPrice;
-  final num code;
+  final String code;
   final num sellChange;
   final num sellChangePercent;
   final num buyChange;

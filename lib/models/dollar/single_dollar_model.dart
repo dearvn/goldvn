@@ -3,37 +3,53 @@
 //import 'package:meta/meta.dart';
 
 class SingleDollarModel {
+  final String code;
+  final String name;
+
   final num buyingPrice;
   final num sellingPrice;
-  final num code;
   final num sellChange;
-  final num sellChangePercent;
   final num buyChange;
-  final num buyChangePercent;
   final String dateTime;
+
+  final num bankBuyingPrice;
+  final num bankSellingPrice;
+  final num bankSellChange;
+  final num bankBuyChange;
+  final String bankDateTime;
   
   SingleDollarModel({
     this.code,
+    this.name,
     this.buyingPrice,
     this.sellingPrice,
     this.sellChange,
-    this.sellChangePercent,
     this.buyChange,
-    this.buyChangePercent,
-    this.dateTime
+    this.dateTime,
+    this.bankBuyingPrice,
+    this.bankSellingPrice,
+    this.bankSellChange,
+    this.bankBuyChange,
+    this.bankDateTime
   });
 
   factory SingleDollarModel.fromJson(Map<String, dynamic> json) {
 
     return SingleDollarModel(
-      code: json['code'],
-      buyingPrice: json['buyingPrice'],
-      sellingPrice: json['sellingPrice'],
-      sellChange: json['sellChange'],
-      sellChangePercent: json['sellChangePercent'],
-      buyChange: json['buyChange'],
-      buyChangePercent: json['buyChangePercent'],
-      dateTime: json['dateTime']
+      code: json['mihong']['code'],
+      name: json['mihong']['name'],
+      
+      buyingPrice: json['mihong']['buyingPrice'],
+      sellingPrice: json['mihong']['sellingPrice'],
+      sellChange: json['mihong']['sellChange'],
+      buyChange: json['mihong']['buyChange'],
+      dateTime: json['mihong']['dateTime'],
+
+      bankBuyingPrice: json['viettin']['buyingPrice'],
+      bankSellingPrice: json['viettin']['sellingPrice'],
+      bankSellChange: json['viettin']['sellChange'],
+      bankBuyChange: json['viettin']['buyChange'],
+      bankDateTime: json['viettin']['dateTime'],
     );
   }
 

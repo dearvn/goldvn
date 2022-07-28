@@ -3,12 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:giavang/shared/colors.dart';
 import 'package:giavang/widgets/alerts/alerts_section.dart';
-
-//import 'package:giavang/widgets/markets/markets_section.dart';
-import 'package:giavang/widgets/news/news_section.dart';
-//import 'package:giavang/widgets/portfolio/portfolio.dart';
-import 'package:giavang/widgets/search/search_section.dart';
 import 'package:giavang/widgets/gold/gold_section.dart';
+import 'package:giavang/widgets/dollar/dollar_section.dart';
 
 class   StockMarketAppHome extends StatefulWidget {
   @override
@@ -21,11 +17,8 @@ class _StockMarketAppHomeState extends State<StockMarketAppHome> {
 
   final List<Widget> tabs = [
     GoldSection(),
-    //PortfolioSection(),
-    AlertsSection(),
-    SearchSection(),
-    //MarketsSection(),
-    NewsSection(),
+    DollarSection(),
+    AlertsSection()
   ];
 
   @override
@@ -55,20 +48,30 @@ class _StockMarketAppHomeState extends State<StockMarketAppHome> {
   List<GButton> _bottomNavigationBarItemItems() {
     return [
       GButton(
-        icon: FontAwesomeIcons.shapes,
-        text: 'GIAVANG',
+        icon: FontAwesomeIcons.coins,
+        text: 'Giá vàng',
+        backgroundColor: Colors.white30,
+        iconActiveColor: Colors.yellow,
+        iconColor: Colors.yellowAccent,
+        textColor: Colors.white30
       ),
       GButton(
-        icon: FontAwesomeIcons.suitcase,
-        text: 'Alerts',
+        icon: FontAwesomeIcons.commentDollar,
+        text: 'Tỷ Giá',
+        backgroundColor: Colors.white30,
+        iconActiveColor: Colors.yellow,
+        iconColor: Colors.yellowAccent,
+        textColor: Colors.white30
+        
       ),
       GButton(
-        icon: FontAwesomeIcons.search,
-        text: 'Search',
-      ),
-      GButton(
-        icon: FontAwesomeIcons.globeAmericas,
-        text: 'News',
+        icon: FontAwesomeIcons.solidBell,
+        text: 'Tín hiệu',
+        backgroundColor: Colors.white30,
+        iconActiveColor: Colors.yellow,
+        iconColor: Colors.yellowAccent,
+        textColor: Colors.white30
+        
       ),
     ];
   }

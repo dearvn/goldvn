@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:giavang/helpers/url/url.dart';
-
+import 'package:intl/intl.dart';
 import 'package:giavang/models/gold/single_gold_model.dart';
-import 'package:giavang/shared/styles.dart';
 
 class GoldCardWidget extends StatelessWidget {
 
   final String title;
   final List<SingleGoldModel> datas;
+  final formatCurrency = new NumberFormat("#,##0", "vi_VN");
 
   GoldCardWidget({
     @required this.title,
@@ -23,9 +22,6 @@ class GoldCardWidget extends StatelessWidget {
             label: Text(''),
           ),
           DataColumn(
-            label: Text(""),
-          ),
-          DataColumn(
             label: Text("MUA"),
           ),
           DataColumn(
@@ -39,15 +35,53 @@ class GoldCardWidget extends StatelessWidget {
                 DataCell(
                   Text('${item.code}'),
                 ),
-                DataCell(
-                  Text('${item.dateTime}'),
-                ),
-                DataCell(
-                  Text('${item.buyingPrice != null ? item.buyingPrice.toStringAsFixed(2): 0 }'),
-                ),
-                DataCell(
-                  Text('${item.sellingPrice != null ? item.sellingPrice.toStringAsFixed(2) : 0}'),
-                ),
+                DataCell(Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    
+                    Text(
+                      '${item.buyingPrice != null ? formatCurrency.format(item.buyingPrice): 0 }',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.w600, color: item.buyChange > 0 ? Colors.lightGreenAccent : Colors.redAccent),
+                    ),
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          WidgetSpan(child: Icon(item.buyChange > 0 ? Icons.arrow_upward : Icons.arrow_downward,
+                          size: 12, color: item.buyChange > 0 ? Colors.lightGreenAccent : Colors.redAccent)),
+                          TextSpan(
+                            text: '${item.buyChange != null ? item.buyChange.toStringAsFixed(0): 0 } (${item.buyChangePercent != null ? item.buyChangePercent: 0 }%)',
+                            style: TextStyle(fontSize: 11, fontWeight: FontWeight.w400, color: item.buyChange > 0 ? Colors.lightGreenAccent : Colors.redAccent),
+                          ),
+                        ],
+                      ),
+                    )
+                    
+                  ])),
+                DataCell(Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    
+                    Text(
+                      '${item.sellingPrice != null ? formatCurrency.format(item.sellingPrice): 0 }',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.w600, color: item.sellChange > 0 ? Colors.lightGreenAccent : Colors.redAccent),
+                    ),
+                    
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          WidgetSpan(child: Icon(item.buyChange > 0 ? Icons.arrow_upward : Icons.arrow_downward,
+                          size: 11, color: item.sellChange > 0 ? Colors.lightGreenAccent : Colors.redAccent)),
+                          TextSpan(
+                            text: '${item.sellChange != null ? item.sellChange.toStringAsFixed(0): 0 } (${item.sellChangePercent != null ? item.sellChangePercent: 0 }%)',
+                            style: TextStyle(fontSize: 11, fontWeight: FontWeight.w400, color: item.sellChange > 0 ? Colors.lightGreenAccent : Colors.redAccent),
+                          ),
+                        ],
+                      ),
+                    )
+                    
+                  ])),
               ],
             )
         )
@@ -55,46 +89,4 @@ class GoldCardWidget extends StatelessWidget {
 
   }
 
-
-  Widget _renderGoldArticle(SingleGoldModel singleGold) {
-
-    return GestureDetector(
-      //onTap: () => launchUrl(singleOption.strike),
-      child: Container(
-        width: 200,
-        child: Column(
-          children: <Widget>[
-
-            Padding(
-              padding: EdgeInsets.only(bottom: 8),
-              child: Text(
-                singleGold.code.toString(),
-                style: TextStyle(
-                  height: 1.6,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color:  Color(0XFFc2c2c2)
-                ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-
-            //Container(
-            //  height: 125,
-            //  decoration: BoxDecoration(
-            //    image: DecorationImage( image: null)
-            //  ),
-            //),
-          ],
-        ),
-      ),
-    );
-  }
-
-  ImageProvider _imageIsValid(String url) {
-    return url == null 
-    ? AssetImage('assets/images/default.jpg')
-    : NetworkImage(url);
-  }
 }

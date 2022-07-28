@@ -7,7 +7,6 @@ import 'package:giavang/helpers/sentry_helper.dart';
 import 'package:giavang/models/gold/gold.dart';
 
 import 'package:giavang/respository/gold/repository.dart';
-import 'package:giavang/respository/gold/storage_client.dart';
 
 part 'gold_event.dart';
 part 'gold_state.dart';
@@ -15,7 +14,6 @@ part 'gold_state.dart';
 class GoldBloc extends Bloc<GoldEvent, GoldState> {
 
   final  _goldRepository = GoldRepository();
-  final  _databaseRepository = GoldStorageClient();
 
   @override
   GoldState get initialState => GoldInitial();
@@ -33,12 +31,12 @@ class GoldBloc extends Bloc<GoldEvent, GoldState> {
     try {
 
       final datas =  await Future
-        .wait(['SPY']
+        .wait(['SJC']
         .map((symbol) async => await _goldRepository.fetchGold(symbol)));
 
         yield GoldLoaded(datas: datas);
     } catch (e, stack) {
-      yield GoldError(message: 'There was an error loading');
+      yield GoldError(message: 'Có lỗi trong quá trình khởi tạo.');
       await SentryHelper(exception: e, stackTrace: stack).report();
     }
   }
