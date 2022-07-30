@@ -12,14 +12,13 @@ part 'alerts_event.dart';
 part 'alerts_state.dart';
 
 class AlertsBloc extends Bloc<AlertsEvent, AlertsState> {
-
-  final  _alertsRepository = AlertsRepository();
+  final _alertsRepository = AlertsRepository();
 
   @override
   AlertsState get initialState => AlertsInitial();
 
   @override
-  Stream<AlertsState> mapEventToState( AlertsEvent event ) async* {
+  Stream<AlertsState> mapEventToState(AlertsEvent event) async* {
     if (event is FetchAlerts) {
       yield AlertsLoading();
       yield* _fetchAlerts();
@@ -27,16 +26,13 @@ class AlertsBloc extends Bloc<AlertsEvent, AlertsState> {
   }
 
   Stream<AlertsState> _fetchAlerts() async* {
-
     try {
+      final alerts = await Future.wait(['']
+          .map((symbol) async => await _alertsRepository.fetchAlerts(symbol)));
 
-      final alerts =  await Future
-        .wait(['']
-        .map((symbol) async => await _alertsRepository.fetchAlerts(symbol)));
-
-        yield AlertsLoaded(alerts: alerts);
+      yield AlertsLoaded(alerts: alerts);
     } catch (e, stack) {
-      yield AlertsError(message: 'There was an error loading');
+      yield AlertsError(message: 'Có lỗi trong quá trình khởi tạo.');
       await SentryHelper(exception: e, stackTrace: stack).report();
     }
   }

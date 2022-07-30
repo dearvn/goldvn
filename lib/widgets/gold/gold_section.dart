@@ -8,41 +8,39 @@ import 'package:giavang/widgets/widgets/empty_screen.dart';
 import 'package:giavang/widgets/widgets/standard/header.dart';
 
 class GoldSection extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kScaffoldBackground,
-      body: OfflineBuilder(
-        child: Container(),
-        connectivityBuilder: ( context,  connectivity, child,  ) {
-          return connectivity == ConnectivityResult.none 
-          ? _buildNoConnectionMessage(context)
-          : _buildContent(context);
-        }
-      )
-    );
+        backgroundColor: kScaffoldBackground,
+        body: OfflineBuilder(
+            child: Container(),
+            connectivityBuilder: (
+              context,
+              connectivity,
+              child,
+            ) {
+              return connectivity == ConnectivityResult.none
+                  ? _buildNoConnectionMessage(context)
+                  : _buildContent(context);
+            }));
   }
 
   Widget _buildNoConnectionMessage(context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height / 14,
-        left: 24,
-        right: 24
-      ),
-      child: EmptyScreen(message: 'Looks like you don\'t have an internet connection.'),
+          top: MediaQuery.of(context).size.height / 14, left: 24, right: 24),
+      child: EmptyScreen(
+          message: 'Looks like you don\'t have an internet connection.'),
     );
   }
 
   Widget _buildContent(context) {
     return RefreshIndicator(
       child: SafeArea(
-        child: ListView(
-          physics: BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          children: [
-
+          child: ListView(
+              physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              children: [
             StandardHeader(
               title: 'GIÁ VÀNG TRONG NƯỚC',
               subtitle: '',
@@ -52,15 +50,12 @@ class GoldSection extends StatelessWidget {
             //SizedBox(height: 16),
             //SizedBox(height: 16),
             GoldSectionWidget()
-          ]
-        )
-      ),
 
+            
+          ])),
       onRefresh: () async {
         // Reload markets section.
-        BlocProvider
-        .of<GoldBloc>(context)
-        .add(FetchGold());
+        BlocProvider.of<GoldBloc>(context).add(FetchGold());
       },
     );
   }

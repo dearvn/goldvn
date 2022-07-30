@@ -12,50 +12,43 @@ class AlertsSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AlertsBloc, AlertsState>(
-      builder: (BuildContext context, AlertsState state) {
+        builder: (BuildContext context, AlertsState state) {
+      if (state is AlertsInitial) {
+        BlocProvider.of<AlertsBloc>(context).add(FetchAlerts());
+      }
 
-        if (state is AlertsInitial) {
-          BlocProvider
-          .of<AlertsBloc>(context)
-          .add(FetchAlerts());
-        }
-
-        if (state is AlertsError) {
-          return Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 3),
-            child: EmptyScreen(message: state.message),
-          );
-        }
-
-        if (state is AlertsLoaded) {
-          return ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: state.alerts.length,
-            itemBuilder: (BuildContext context, int index) {
-
-              // Ensure that we don't have empty headlines.
-              if (state.alerts[index].alerts.isEmpty ) {
-                return EmptyScreen(message: 'There are no alerts related to ${state.alerts[index].keyWord}.');
-              }
-              return AlertsCardWidget(
-                title: 'Alerts',
-                alerts: state.alerts[index].alerts,
-              );
-            },
-          );
-        }
-
+      if (state is AlertsError) {
         return Padding(
-          padding: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height / 3,
-            left: 4,
-            right: 4
-          ),
-          child: LoadingIndicatorWidget(),
+          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 3),
+          child: EmptyScreen(message: state.message),
         );
       }
-    );
-  }
 
+      if (state is AlertsLoaded) {
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: state.alerts.length,
+          itemBuilder: (BuildContext context, int index) {
+            // Ensure that we don't have empty headlines.
+            if (state.alerts[index].alerts.isEmpty) {
+              return EmptyScreen(
+                  message:
+                      'There are no alerts related to ${state.alerts[index].keyWord}.');
+            }
+            return AlertsCardWidget(
+              title: 'Alerts',
+              alerts: state.alerts[index].alerts,
+            );
+          },
+        );
+      }
+
+      return Padding(
+        padding: EdgeInsets.only(
+            top: MediaQuery.of(context).size.height / 3, left: 4, right: 4),
+        child: LoadingIndicatorWidget(),
+      );
+    });
+  }
 }
