@@ -14,10 +14,10 @@ class AlertsCardWidget extends StatelessWidget {
         columnSpacing: 6,
         columns: <DataColumn>[
           DataColumn(
-            label: Text('Thời gian'),
+            label: Text('THỜI GIAN'),
           ),
           DataColumn(
-            label: Text("Tín hiệu"),
+            label: Text("TÍN HIỆU"),
           ),
         ],
         rows: alerts
