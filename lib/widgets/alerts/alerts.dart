@@ -24,7 +24,6 @@ class _AlertsSectionWidget extends State<AlertsSectionWidget> {
   }
 
   void _reload() {
-    print("***************************reload alert***************************");
     BlocProvider.of<AlertsBloc>(context).add(FetchAlerts());
   }
 

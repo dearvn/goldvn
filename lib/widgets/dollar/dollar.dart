@@ -24,8 +24,6 @@ class _DollarSectionWidget extends State<DollarSectionWidget> {
   }
 
   void _reload() {
-    print(
-        "***************************reload dollar***************************");
     BlocProvider.of<DollarBloc>(context).add(FetchDollar());
   }
 

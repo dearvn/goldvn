@@ -1,6 +1,6 @@
 name: giavang
-description: A new Flutter project.
-version: 7.0.0
+description: Project to show gold, dollar price at VietNam.
+version: 1.0.0
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

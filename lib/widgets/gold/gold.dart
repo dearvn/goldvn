@@ -24,7 +24,6 @@ class _GoldSectionWidget extends State<GoldSectionWidget> {
   }
 
   void _reload() {
-    print("***************************reload gold***************************");
     BlocProvider.of<GoldBloc>(context).add(FetchGold());
   }
 
