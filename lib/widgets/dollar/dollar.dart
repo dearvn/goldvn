@@ -1,13 +1,41 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:giavang/bloc/dollar/dollar_bloc.dart';
 import 'package:giavang/widgets/dollar/dollar_card/dollar_card.dart';
 import 'package:giavang/widgets/widgets/empty_screen.dart';
-
 import 'package:giavang/widgets/widgets/loading_indicator.dart';
 
-class DollarSectionWidget extends StatelessWidget {
+class DollarSectionWidget extends StatefulWidget {
+  const DollarSectionWidget();
+
+  @override
+  _DollarSectionWidget createState() => _DollarSectionWidget();
+}
+
+class _DollarSectionWidget extends State<DollarSectionWidget> {
+  Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    timer = Timer.periodic(Duration(seconds: 60), (Timer t) => _reload());
+  }
+
+  void _reload() {
+    print(
+        "***************************reload dollar***************************");
+    BlocProvider.of<DollarBloc>(context).add(FetchDollar());
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DollarBloc, DollarState>(
@@ -15,10 +43,6 @@ class DollarSectionWidget extends StatelessWidget {
       if (state is DollarInitial) {
         BlocProvider.of<DollarBloc>(context).add(FetchDollar());
       }
-
-      Timer.periodic(Duration(seconds: 300), (timer) {
-        BlocProvider.of<DollarBloc>(context).add(FetchDollar());
-      });
 
       if (state is DollarError) {
         return Padding(
@@ -35,9 +59,7 @@ class DollarSectionWidget extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             // Ensure that we don't have empty headlines.
             if (state.datas[index].datas.isEmpty) {
-              return EmptyScreen(
-                  message:
-                      'There are no data related to ${state.datas[index].keyWord}.');
+              return EmptyScreen(message: 'Chưa có dữ liệu.');
             }
             return DollarCardWidget(
               title: 'Dollar',

@@ -29,8 +29,7 @@ class GoldSection extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
           top: MediaQuery.of(context).size.height / 14, left: 24, right: 24),
-      child: EmptyScreen(
-          message: 'Looks like you don\'t have an internet connection.'),
+      child: EmptyScreen(message: 'Vui lòng kết nối internet.'),
     );
   }
 
@@ -48,10 +47,7 @@ class GoldSection extends StatelessWidget {
             ),
 
             //SizedBox(height: 16),
-            //SizedBox(height: 16),
             GoldSectionWidget()
-
-            
           ])),
       onRefresh: () async {
         // Reload markets section.

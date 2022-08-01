@@ -1,13 +1,39 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:giavang/bloc/alerts/alerts_bloc.dart';
 import 'package:giavang/widgets/alerts/alerts_card/alerts_card.dart';
 import 'package:giavang/widgets/widgets/empty_screen.dart';
-
 import 'package:giavang/widgets/widgets/loading_indicator.dart';
 
-class AlertsSectionWidget extends StatelessWidget {
+class AlertsSectionWidget extends StatefulWidget {
+  const AlertsSectionWidget();
+
+  @override
+  _AlertsSectionWidget createState() => _AlertsSectionWidget();
+}
+
+class _AlertsSectionWidget extends State<AlertsSectionWidget> {
+  Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    timer = Timer.periodic(Duration(seconds: 60), (Timer t) => _reload());
+  }
+
+  void _reload() {
+    print("***************************reload alert***************************");
+    BlocProvider.of<AlertsBloc>(context).add(FetchAlerts());
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

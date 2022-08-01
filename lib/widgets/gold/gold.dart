@@ -1,13 +1,40 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:giavang/bloc/gold/gold_bloc.dart';
 import 'package:giavang/widgets/gold/gold_card/gold_card.dart';
 import 'package:giavang/widgets/widgets/empty_screen.dart';
-
 import 'package:giavang/widgets/widgets/loading_indicator.dart';
 
-class GoldSectionWidget extends StatelessWidget {
+class GoldSectionWidget extends StatefulWidget {
+  const GoldSectionWidget();
+
+  @override
+  _GoldSectionWidget createState() => _GoldSectionWidget();
+}
+
+class _GoldSectionWidget extends State<GoldSectionWidget> {
+  Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    timer = Timer.periodic(Duration(seconds: 60), (Timer t) => _reload());
+  }
+
+  void _reload() {
+    print("***************************reload gold***************************");
+    BlocProvider.of<GoldBloc>(context).add(FetchGold());
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GoldBloc, GoldState>(
@@ -31,9 +58,7 @@ class GoldSectionWidget extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             // Ensure that we don't have empty headlines.
             if (state.datas[index].datas.isEmpty) {
-              return EmptyScreen(
-                  message:
-                      'There are no data related to ${state.datas[index].keyWord}.');
+              return EmptyScreen(message: 'Chưa có dữ liệu.');
             }
             return GoldCardWidget(
               title: 'GOLD',
