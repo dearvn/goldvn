@@ -19,10 +19,10 @@ class DollarCardWidget extends StatelessWidget {
             label: Text(''),
           ),
           DataColumn(
-            label: Text("Ngân hàng"),
+            label: Text("NGÂN HÀNG"),
           ),
           DataColumn(
-            label: Text("Thị trường"),
+            label: Text("TỰ DO"),
           ),
         ],
         rows: datas
