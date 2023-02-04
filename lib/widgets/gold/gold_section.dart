@@ -41,7 +41,7 @@ class GoldSection extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               children: [
             StandardHeader(
-              title: 'GIÁ VÀNG TRONG NƯỚC',
+              title: 'GIÁ VÀNG',
               subtitle: '',
               action: Container(),
             ),

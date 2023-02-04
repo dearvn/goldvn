@@ -49,18 +49,11 @@ class _StockMarketAppHomeState extends State<StockMarketAppHome> {
           textColor: Colors.white30),
       GButton(
           icon: FontAwesomeIcons.commentDollar,
-          text: 'Tỷ Giá',
+          text: 'Giá đô',
           backgroundColor: Colors.white30,
           iconActiveColor: Colors.yellow,
           iconColor: Colors.yellowAccent,
-          textColor: Colors.white30),
-      GButton(
-          icon: FontAwesomeIcons.solidBell,
-          text: 'Tín hiệu',
-          backgroundColor: Colors.white30,
-          iconActiveColor: Colors.yellow,
-          iconColor: Colors.yellowAccent,
-          textColor: Colors.white30),
+          textColor: Colors.white30)
     ];
   }
 
