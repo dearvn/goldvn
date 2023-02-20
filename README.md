@@ -1,3 +1,4 @@
+## A project to use Provider to manage states in Flutter
 
 ## Install 
 ```bash
