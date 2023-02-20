@@ -1,5 +1,7 @@
 ## A project to use Provider to manage states in Flutter
 
+** Author URL: https://donaldit.net
+
 ## Install 
 ```bash
 # install packages
